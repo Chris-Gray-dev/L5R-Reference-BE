@@ -37,12 +37,18 @@ namespace L5R_Reference_BE.Models
 
         // Todo turn to list of opportunities
         [BsonElement("newOpportunities")]
-        public string? NewOpportunities { get; set; }
+        public List<Opportunity>? NewOpportunities { get; set; }
 
         [BsonElement("EnhancementEffect")]
         public string? EnhancementEffect { get; set; }
 
         [BsonElement("burstEffect")]
         public string? BurstEffect { get; set; }
+
+        [BsonElement("ring")]
+        public Ring? Ring { get; set; }
+
+        [BsonElement("style")]
+        public KataStyle? Style { get; set; }
     }
 }

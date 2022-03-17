@@ -1,6 +1,6 @@
 ﻿namespace L5R_Reference_BE.Enums
 {
-    public enum KataStyles
+    public enum KataStyle
     {
         General,
         CloseCombat,
