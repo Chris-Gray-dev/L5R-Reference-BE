@@ -39,7 +39,7 @@ namespace L5R_Reference_BE.Models
         [BsonElement("newOpportunities")]
         public List<Opportunity>? NewOpportunities { get; set; }
 
-        [BsonElement("EnhancementEffect")]
+        [BsonElement("enhancementEffect")]
         public string? EnhancementEffect { get; set; }
 
         [BsonElement("burstEffect")]

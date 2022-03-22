@@ -1,15 +1,34 @@
 using L5R_Reference_BE.Models;
 using L5R_Reference_BE.Services;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost",
+                                              "http://localhost:4200");
+                      });
+});
+
+
 
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("L5R_DatabaseSetting"));
 builder.Services.AddSingleton<TechniqueService>();
+builder.Services.AddSingleton<RingService>();
+builder.Services.AddSingleton<TechniqueTypeService>();
+builder.Services.AddSingleton<KataStyleService>();
+builder.Services.AddSingleton<BookService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -22,6 +41,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthorization();
 

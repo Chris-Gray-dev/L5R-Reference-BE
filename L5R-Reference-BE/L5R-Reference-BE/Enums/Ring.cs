@@ -4,7 +4,7 @@
     {
         Fire,
         Water,
-        Warth,
+        Earth,
         Air,
         Void
     }

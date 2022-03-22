@@ -1,6 +1,6 @@
 ﻿namespace L5R_Reference_BE.Enums
 {
-    public enum Books
+    public enum Book
     {
         Core,
         CoS,
