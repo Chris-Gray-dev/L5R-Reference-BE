@@ -3,6 +3,7 @@
 {
     public enum TechniqueType
     {
+        All,
         Kata,
         Kiho,
         Invocation,
@@ -10,5 +11,6 @@
         Shuji,
         Maho,
         Ninjitsu
+        
     }
 }

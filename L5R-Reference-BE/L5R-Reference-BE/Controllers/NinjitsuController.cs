@@ -3,33 +3,31 @@ using L5R_Reference_BE.Models;
 using L5R_Reference_BE.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
-using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace L5R_Reference_BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TechniquesController : ControllerBase
+    public class NinjitsuController : ControllerBase
     {
-
+        private const TechniqueType _type = TechniqueType.Ninjitsu;
         private readonly TechniqueService _techniqueService;
-
-        public TechniquesController(TechniqueService techniqueService)  
+        public NinjitsuController(TechniqueService techniqueService)
         {
             _techniqueService = techniqueService;
         }
 
-        [HttpGet]
-        public async Task<List<Technique>> Get() =>
-            await _techniqueService.GetAsync();
 
+        [HttpGet]
+        public async Task<ActionResult<List<Technique>>> Get()
+        {
+            return await _techniqueService.GetTypeAsync(_type);
+        }
 
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Technique?>> Get(string id)
         {
-            var technique = await _techniqueService.GetAsync(id);
+            var technique = await _techniqueService.GetIdByTypeAsync(_type,id);
             if (technique == null)
             {
                 return NotFound();
